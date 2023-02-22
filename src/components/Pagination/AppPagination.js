@@ -17,13 +17,13 @@ export const AppPagination = ({ pokemons, setPokemonsList }) => {
   };
   useEffect(() => {
     setPokemonsList(_DATA.currentData());
-  }, [page]);
+  }, [page]); // eslint-disable-line
 
   useEffect(() => {
     setPage(1);
     _DATA.jump(1);
     setPokemonsList(_DATA.currentData());
-  }, [pokemons]);
+  }, [pokemons]); // eslint-disable-line
 
   return (
     <Box

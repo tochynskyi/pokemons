@@ -7,7 +7,18 @@ export const PokemonInfo = ({ selectedPokemon }) => {
   const pokemonAvatar = sprites && Object.values(sprites)[0];
 
   if (!selectedPokemon.id) {
-    return <Typography>No pokemon!</Typography>;
+    return (
+      <Grid2
+        sx={{
+          display: "flex",
+          alignItems: "center",
+			 justifyContent: "center",
+        }}
+        xs={6}
+      >
+        <Typography sx={{ textAlign: "center" }}>No pokemon!</Typography>
+      </Grid2>
+    );
   }
   return (
     <Grid2

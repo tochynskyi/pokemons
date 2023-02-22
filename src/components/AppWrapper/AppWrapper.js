@@ -1,4 +1,4 @@
-import { Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { useEffect, useState } from "react";
 import { getPokemons } from "../../http/getPokemons";
@@ -26,23 +26,35 @@ export const AppWrapper = () => {
     getPokemons().then((data) => setPokemons(data));
   }, []);
 
-  return (
-    <Container maxWidth="lg">
-      {!pokemons ? (
-        <Typography sx={{ textAlign: "center" }}>
+  if (!pokemons) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          width: "100%",
+        }}
+      >
+        <Typography variant="title" sx={{ textAlign: "center" }}>
           Pokemons are loading...
         </Typography>
-      ) : (
-        <Grid2 container>
-          <SideBar
-            pokemons={pokemons}
-            onPrev={onPrev}
-            onNext={onNext}
-            setSelectedPokemonURL={setSelectedPokemonURL}
-          />
-          <PokemonInfo selectedPokemon={selectedPokemon} />
-        </Grid2>
-      )}
+      </Box>
+    );
+  }
+  
+  return (
+    <Container maxWidth="lg">
+      <Grid2 container>
+        <SideBar
+          pokemons={pokemons}
+          onPrev={onPrev}
+          onNext={onNext}
+          setSelectedPokemonURL={setSelectedPokemonURL}
+        />
+        <PokemonInfo selectedPokemon={selectedPokemon} />
+      </Grid2>
     </Container>
   );
 };
