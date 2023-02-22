@@ -8,7 +8,6 @@ export const AppWrapper = () => {
   const [pokemons, setPokemons] = useState(null);
   const [selectedPokemonURL, setSelectedPokemonURL] = useState("");
   const [selectedPokemon, setSelectedPokemon] = useState(null);
-  console.log(pokemons);
 
   const onPrev = () => {
     getPokemons(pokemons.previous).then((data) => setPokemons(data));
@@ -19,12 +18,12 @@ export const AppWrapper = () => {
   };
 
   useEffect(() => {
-    getPokemons().then((data) => setPokemons(data));
-  }, []);
-
-  useEffect(() => {
     getPokemons(selectedPokemonURL).then((data) => setSelectedPokemon(data));
   }, [selectedPokemonURL]);
+
+  useEffect(() => {
+    getPokemons().then((data) => setPokemons(data));
+  }, []);
 
   return (
     <Grid2 container>

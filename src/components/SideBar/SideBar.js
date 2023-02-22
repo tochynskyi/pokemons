@@ -1,5 +1,12 @@
+import { useState } from "react";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { Button, Link, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  List,
+  ListItem,
+  Typography,
+} from "@mui/material";
+import { AppPagination } from "../Pagination/AppPagination";
 
 export const SideBar = ({
   pokemons,
@@ -7,6 +14,7 @@ export const SideBar = ({
   onPrev,
   onNext,
 }) => {
+  const [pokemonsList, setPokemonsList] = useState([]);
 
   if (!pokemons) {
     return <Typography>Pokemons are loading...</Typography>;
@@ -14,15 +22,26 @@ export const SideBar = ({
 
   return (
     <Grid2 xs={5}>
-      <Stack>
-        {pokemons.results.map((item) => (
-          <Link onClick={() => setSelectedPokemonURL(item.url)} key={item.name}>
+      <List>
+        {pokemonsList.map((item) => (
+          <ListItem
+            onClick={() => setSelectedPokemonURL(item.url)}
+            key={item.name}
+          >
             {item.name}
-          </Link>
+          </ListItem>
         ))}
-      </Stack>
-      <Button disabled={!pokemons.previous} onClick={() => onPrev()}>Prev</Button>
-      <Button disabled={!pokemons.next} onClick={() => onNext()}>Next</Button>
+      </List>
+      <AppPagination
+        pokemons={pokemons.results}
+        setPokemonsList={setPokemonsList}
+      />
+      <Button disabled={!pokemons.previous} onClick={() => onPrev()}>
+        Prev
+      </Button>
+      <Button disabled={!pokemons.next} onClick={() => onNext()}>
+        Next
+      </Button>
     </Grid2>
   );
 };
