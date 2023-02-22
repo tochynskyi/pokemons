@@ -13,10 +13,6 @@ export const SideBar = ({
   const [pokemonsList, setPokemonsList] = useState([]);
   const theme = useTheme();
 
-  if (!pokemons) {
-    return <Typography>Pokemons are loading...</Typography>;
-  }
-
   return (
     <Grid2
       sx={{
