@@ -1,11 +1,13 @@
 import { Container } from "@mui/material";
-import { AppWrapper } from "./components/AppWrapper";
+import { AppWrapper } from "./components/AppWrapper/AppWrapper";
+
 
 function App() {
   return (
-    <>
-      <AppWrapper />
-    </>
+	<Container maxWidth='md'>
+		<AppWrapper/>
+	</Container>
+
   );
 }
 
